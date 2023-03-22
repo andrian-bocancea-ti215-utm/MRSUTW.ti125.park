@@ -8,6 +8,7 @@ namespace parkTrumpet.Domain.Entities.User
 {
     class ULoginData
     {
+        public string Test { get; set; }
         public string Credendtial { get; set; }
         public string Password { get; set; }
         public string LoginIp { get; set; }
