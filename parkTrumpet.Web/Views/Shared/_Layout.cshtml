@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Wallet - Payday Loan Service Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta name="description" content="This is meta description">
+    <meta name="author" content="Themefisher">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <!-- theme meta -->
+    <meta name="theme-name" content="wallet" />
+
+    <!-- # Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome/brands.css">
+    <link rel="stylesheet" href="plugins/font-awesome/solid.css">
+    <!-- # Main Style Sheet -->
+    <link rel="stylesheet" href="~/Content/HomeStyle.css">
+
+    <!-- # JS Plugins -->
+    <script src="~/Scripts/Slick/slick.min.js"></script>
+    <script src="~/Scripts/scrollmenu.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="~/Scripts/HomeScript.js"></script>
+    @Scripts.Render("~/bundles/jquery/js")
+    @Scripts.Render("~/bundles/modernizr/js")
+    @Scripts.Render("~/bundles/bootstrap/js")
+    @Styles.Render("~/bundles/slick/css")
+
+</head>
+<body>
+    @Html.Partial("_NavBar")
+
+    @RenderBody()
+
+</body>
+</html>
