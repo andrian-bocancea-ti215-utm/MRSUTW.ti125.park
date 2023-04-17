@@ -1,0 +1,18 @@
+﻿@using parkTrumpet.Web.Models
+@model ConsoleForm
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "ParkingConsole", FormMethod.Post))
+{
+    SelectList parkingSelectList = new SelectList(Model.ParkingList, "Name", "Name");
+    @Html.DropDownListFor(m => m.Parking, parkingSelectList)
+    @Html.TextBoxFor(m => m.RegistrationNumber)
+
+    <input type="submit" name="submit" value="arrival" />
+    <input type="submit" name="submit" value="departure" />
+}
+@Html.DisplayFor(m => m.RegistrationNumber)
