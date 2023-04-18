@@ -23,7 +23,10 @@ namespace parkTrumpet.BusinessLogic.DBModel
             { Name = "Tekwill" };
             var parking = new parkingDbTable
             { Name = "Tekwill Front", Owner = owner };
+            var adminAccount = new adminAccountDbTable
+            { Username = "root", Password = "1111", Owner = owner };
 
+            context.AdminAccounts.Add(adminAccount);
             context.Parkings.Add(parking);
             context.SaveChanges();
         }

@@ -18,20 +18,6 @@ namespace parkTrumpet.BusinessLogic
         {
             return new SessionBL();
         }
-        public int DoTest()
-        {
-            using (var db = new ParkingSystemContext())
-            {
-                ownerDbTable x = new ownerDbTable
-                {
-                    Name = "Kaufland"
-                };
-                db.Owners.Add(x);
-                db.SaveChanges();
-            }
-            return 0;
-        }
-
         public string RetrieveParkingList()
         {
             var x = new List<parkingDbTable>();
@@ -89,6 +75,17 @@ namespace parkTrumpet.BusinessLogic
             using (var db = new ParkingSystemContext())
             {
                 return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").ToList());
+            }
+        }
+        public string GetAdminAccountKey(string username,string password)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var cAccount = db.AdminAccounts.FirstOrDefault(a => a.Username == username && a.Password == password);
+                if (cAccount != null)
+                    return cAccount.Id.ToString();
+                else
+                    return "0";
             }
         }
     }

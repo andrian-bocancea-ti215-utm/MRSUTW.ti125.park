@@ -42,7 +42,7 @@ namespace parkTrumpet.Web.Controllers
         internal ParkingConsoleModel fillData(ParkingConsoleModel x)
         {
             var bl = new BusinessLogic.BusinessLogic();
-            var plist = JsonConvert.DeserializeObject<List<ParkingData>>(bl.RetrieveParkingList());
+            var plist = JsonConvert.DeserializeObject<List<parkingDbTable>>(bl.RetrieveParkingList());
             x.ParkingList = plist;
             var slist = JsonConvert.DeserializeObject<List<parkingSessionDbTable>>(bl.RetrieveParkingSessionList());
             x.ParkingSessions = slist;

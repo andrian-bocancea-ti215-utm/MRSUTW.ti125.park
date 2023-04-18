@@ -21,9 +21,6 @@ namespace parkTrumpet.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var bl = new BusinessLogic.BusinessLogic();
-            bl.DoTest();
-
             return View();
         }
     }

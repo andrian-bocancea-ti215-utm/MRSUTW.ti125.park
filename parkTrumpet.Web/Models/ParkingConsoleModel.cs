@@ -8,7 +8,7 @@ namespace parkTrumpet.Web.Models
 {
     public class ParkingConsoleModel
     {
-        public List<ParkingData> ParkingList { get; set; }
+        public List<parkingDbTable> ParkingList { get; set; }
         public string Parking { get; set; }
         public string RegistrationNumber { get; set; }
         public List<parkingSessionDbTable> ParkingSessions { get; set; }

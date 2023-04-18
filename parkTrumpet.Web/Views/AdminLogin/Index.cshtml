@@ -1,0 +1,18 @@
+﻿@using parkTrumpet.Web.Models
+@model AdminLoginModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "AdminLogin", FormMethod.Post))
+{
+    @Html.TextBoxFor(m => m.Username)
+    @Html.PasswordFor(m => m.Password)
+
+    <input type="submit" name="submit" value="Log in" />
+}
+@if (Model.Failed==true)
+     {
+     <h1>Incorrect Data</h1>
+     }
+

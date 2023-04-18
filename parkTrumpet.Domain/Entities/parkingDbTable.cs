@@ -29,8 +29,6 @@ namespace parkTrumpet.Domain.Entities
         public int DayPrice { get; set; }
 
         public int NightPrice { get; set; }
-
-        public virtual ICollection<lotDbTable> Lots { get; set; }
         
     }
 }

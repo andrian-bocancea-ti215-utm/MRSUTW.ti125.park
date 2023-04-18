@@ -24,6 +24,12 @@ namespace parkTrumpet.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "ParkingConsole", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "AdminDashboard",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "AdminDashboard", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

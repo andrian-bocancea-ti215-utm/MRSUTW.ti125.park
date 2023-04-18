@@ -236,17 +236,16 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\AdminDashboardController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParkingConsoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdminAccountsData.cs" />
+    <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\ParkingConsoleModel.cs" />
-    <Compile Include="Models\LotData.cs" />
-    <Compile Include="Models\OwnerData.cs" />
-    <Compile Include="Models\ParkingData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +284,8 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Authentication\Index.cshtml" />
     <Content Include="Views\ParkingConsole\Index.cshtml" />
+    <Content Include="Views\AdminDashboard\Index.cshtml" />
+    <Content Include="Views\AdminLogin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
