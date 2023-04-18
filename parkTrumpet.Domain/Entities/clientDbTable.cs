@@ -24,7 +24,5 @@ namespace parkTrumpet.Domain.Entities
 
         [DataType(DataType.Date)]
         public DateTime RegistrationDate { get; set; }
-
-        public virtual ICollection<carDbTable> Cars { get; set; }
     }
 }

@@ -17,8 +17,6 @@ namespace parkTrumpet.Domain.Entities
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<parkingDbTable> Parkings { get; set; }
-
         public virtual ICollection<adminAccountDbTable> Accounts { get; set; }
 
     }

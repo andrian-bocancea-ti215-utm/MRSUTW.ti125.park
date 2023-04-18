@@ -8,6 +8,8 @@ using parkTrumpet.BusinessLogic.Interfaces;
 using parkTrumpet.BusinessLogic.Core;
 using parkTrumpet.Domain.Entities;
 using parkTrumpet.Web.Models;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace parkTrumpet.Web.Controllers
 {
@@ -16,39 +18,35 @@ namespace parkTrumpet.Web.Controllers
         // GET: ParkingConsole
         public ActionResult Index()
         {
-            var consoleData = new ConsoleForm();
-            consoleData.ParkingList = getParkingList();
+            var consoleData = new ParkingConsoleModel();
+            consoleData = fillData(consoleData);
             return View(consoleData);
         }
 
         [HttpPost]
-        public ActionResult Index(ConsoleForm x, string submit)
+        public ActionResult Index(ParkingConsoleModel x, string submit)
         {
             var bl = new BusinessLogic.BusinessLogic();
             if(submit=="arrival")
             {
                 bl.ReportCarArrival(x.Parking, x.RegistrationNumber);
             }
-            x.ParkingList = getParkingList();
+            else
+            {
+                bl.ReportCarDeparture(x.Parking, x.RegistrationNumber);
+            }
+            fillData(x);
             return View(x);
         }
 
-        internal List<ParkingData> getParkingList()
+        internal ParkingConsoleModel fillData(ParkingConsoleModel x)
         {
             var bl = new BusinessLogic.BusinessLogic();
-            var DbList = bl.RetrieveParkingList();
-
-            var list = new List<ParkingData>();
-
-            foreach (var line in DbList)
-            {
-                ParkingData x = new ParkingData
-                {
-                    Name = line.Name
-                };
-                list.Add(x);
-            }
-            return(list);
+            var plist = JsonConvert.DeserializeObject<List<ParkingData>>(bl.RetrieveParkingList());
+            x.ParkingList = plist;
+            var slist = JsonConvert.DeserializeObject<List<parkingSessionDbTable>>(bl.RetrieveParkingSessionList());
+            x.ParkingSessions = slist;
+            return x;
         }
     }
 }

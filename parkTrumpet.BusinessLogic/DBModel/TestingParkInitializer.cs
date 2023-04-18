@@ -14,17 +14,15 @@ namespace parkTrumpet.BusinessLogic.DBModel
         {
             var car = new carDbTable 
             { Brand = "Ford", Color = "#004C80", ModelName = "Fiesta Mk7", RegistrationPlate = "YLY923" };
-            var clientcars = new List<carDbTable> { car };
             var client = new clientDbTable
-            { Username = "the.keybord", Password = "1111", PhoneNumber = "+37368799090", RegistrationDate = DateTime.UtcNow, Cars=clientcars};
+            { Username = "the.keybord", Password = "1111", PhoneNumber = "+37368799090", RegistrationDate = DateTime.UtcNow};
             car.Client = client;
-            context.Clients.Add(client);
+            context.Cars.Add(car);
 
             var owner = new ownerDbTable
             { Name = "Tekwill" };
             var parking = new parkingDbTable
             { Name = "Tekwill Front", Owner = owner };
-            owner.Parkings = new List<parkingDbTable> { parking };
 
             context.Parkings.Add(parking);
             context.SaveChanges();
