@@ -24,24 +24,13 @@ namespace parkTrumpet.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(ParkingConsoleModel x, string submit)
+        public ActionResult PCTable(ParkingConsoleModel x, string submit)
         {
             var bl = new BusinessLogic.BusinessLogic();
-            if(submit=="arrival")
-            {
-                bl.ReportCarArrival(x.Parking, x.RegistrationNumber);
-            }
-            else
-            {
-                bl.ReportCarDeparture(x.Parking, x.RegistrationNumber);
-            }
-            x = fillData(x);
-            return View(x);
-        }
-
-        [HttpGet]
-        public ActionResult PCTable(ParkingConsoleModel x)
-        {
+            if (submit=="arrival")
+            bl.ReportCarArrival(x.Parking, x.RegistrationNumber);
+            if (submit=="departure")
+            bl.ReportCarDeparture(x.Parking, x.RegistrationNumber);
             x = fillData(x);
             return PartialView("PCTable",x);
         }
