@@ -1,0 +1,14 @@
+﻿@using parkTrumpet.Web.Models
+@model ParkingConsoleModel
+<table border="1" cellpadding="5">
+    @foreach (var row in Model.ParkingSessions)
+    {
+    <tr>
+        <td>@row.Id</td>
+        <td>@row.Parking.Name</td>
+        <td>@row.Car.RegistrationPlate</td>
+        <td>@row.ArrivalTime</td>
+        <td>@row.DepartureTime</td>
+    </tr>
+    }
+</table>

@@ -9,21 +9,19 @@
 @using (Html.BeginForm("Index", "ParkingConsole", FormMethod.Post))
 {
     SelectList parkingSelectList = new SelectList(Model.ParkingList, "Name", "Name");
-    @Html.DropDownListFor(m => m.Parking, parkingSelectList)
-    @Html.TextBoxFor(m => m.RegistrationNumber)
+@Html.DropDownListFor(m => m.Parking, parkingSelectList)
+@Html.TextBoxFor(m => m.RegistrationNumber)
 
-    <input type="submit" name="submit" value="arrival" />
-    <input type="submit" name="submit" value="departure" />
+<input type="submit" name="submit" value="arrival" />
+<input type="submit" name="submit" value="departure" />
 }
-<table border="1" cellpadding="5">
-    @foreach (var row in Model.ParkingSessions)
-    {
-        <tr>
-            <td>@row.Id</td>
-            <td>@row.Parking.Name</td>
-            <td>@row.Car.RegistrationPlate</td>
-            <td>@row.ArrivalTime</td>
-            <td>@row.DepartureTime</td>
-        </tr>
-    }
-</table>
+<div id="insert">
+</div>
+@Ajax.ActionLink("DoShit",
+                 "PCTable",
+                 new AjaxOptions { HttpMethod = "GET",
+                 InsertionMode = InsertionMode.Replace,
+                 UpdateTargetId = "insert" })
+
+<script src="@Url.Content("~/Scripts/jquery-3.6.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>

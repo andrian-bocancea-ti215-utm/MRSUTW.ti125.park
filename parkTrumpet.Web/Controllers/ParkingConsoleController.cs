@@ -35,8 +35,15 @@ namespace parkTrumpet.Web.Controllers
             {
                 bl.ReportCarDeparture(x.Parking, x.RegistrationNumber);
             }
-            fillData(x);
+            x = fillData(x);
             return View(x);
+        }
+
+        [HttpGet]
+        public ActionResult PCTable(ParkingConsoleModel x)
+        {
+            x = fillData(x);
+            return PartialView("PCTable",x);
         }
 
         internal ParkingConsoleModel fillData(ParkingConsoleModel x)

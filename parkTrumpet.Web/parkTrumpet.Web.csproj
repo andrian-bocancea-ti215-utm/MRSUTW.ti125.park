@@ -286,6 +286,7 @@
     <Content Include="Views\ParkingConsole\Index.cshtml" />
     <Content Include="Views\AdminDashboard\Index.cshtml" />
     <Content Include="Views\AdminLogin\Index.cshtml" />
+    <Content Include="Views\ParkingConsole\PCTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
