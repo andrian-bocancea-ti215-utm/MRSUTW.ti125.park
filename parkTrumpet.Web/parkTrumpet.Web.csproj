@@ -237,6 +237,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\AdminDashboardController.cs" />
+    <Compile Include="Controllers\UserDashboardController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -244,6 +246,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GarageModel.cs" />
+    <Compile Include="Models\UserDashboardModel.cs" />
+    <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\ParkingConsoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -287,6 +292,9 @@
     <Content Include="Views\AdminDashboard\Index.cshtml" />
     <Content Include="Views\AdminLogin\Index.cshtml" />
     <Content Include="Views\ParkingConsole\PCTable.cshtml" />
+    <Content Include="Views\UserLogin\Index.cshtml" />
+    <Content Include="Views\UserDashboard\Index.cshtml" />
+    <Content Include="Views\UserDashboard\Garage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

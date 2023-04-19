@@ -1,0 +1,19 @@
+﻿@model parkTrumpet.Web.Models.GarageModel
+
+Garage<br />
+
+      <table border="1" cellpadding="5">
+          <tr>
+          @Ajax.ActionLink("Add New","AddCar",new AjaxOptions { HttpMethod="POST"})
+          </tr>
+          @foreach (var row in Model.Cars)
+          {
+              <tr>
+                  <td>@row.Id</td>
+                  <td>@row.RegistrationPlate</td>
+                  <td>@row.Brand</td>
+                  <td>@row.ModelName</td>
+                  <td style="background-color:@row.Color;">@row.Color</td>
+              </tr>
+          }
+      </table>

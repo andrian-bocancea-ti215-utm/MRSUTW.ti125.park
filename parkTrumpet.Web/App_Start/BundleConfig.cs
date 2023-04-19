@@ -6,7 +6,8 @@ namespace parkTrumpet.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery/js").Include("~/Scripts/jquery-3.6.3.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery/js")
+                .Include("~/Scripts/jquery-3.6.4.min.js").Include("~/Scripts/jquery.unobtrusive-ajax.min.js"));
             bundles.Add(new Bundle("~/bundles/bootstrap/js").Include("~/Scripts/bootstrap.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr/js").Include("~/Scripts/modernizr-2.8.3.js"));
 

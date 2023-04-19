@@ -1,0 +1,20 @@
+﻿@using parkTrumpet.Web.Models
+@model UserDashboardModel 
+@{
+    ViewBag.Title = "Index";
+}
+<h2>User: @Model.User.Username</h2>
+<div>
+    @Ajax.ActionLink("Garage", "ShowGarage", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace})
+</div>
+<div>
+    @Ajax.ActionLink("History", "ShowHistory", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace})
+</div>
+<div>
+    @Ajax.ActionLink("Checkout", "ShowCheckout", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace})
+</div>
+@Html.Hidden("User",Model.User)
+<section id="main">
+
+</section>
+

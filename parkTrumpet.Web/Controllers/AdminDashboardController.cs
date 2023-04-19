@@ -11,6 +11,7 @@ namespace parkTrumpet.Web.Controllers
         // GET: AdminDashboard
         public ActionResult Index()
         {
+
             return View();
         }
     }

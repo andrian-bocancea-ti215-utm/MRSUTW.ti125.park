@@ -28,6 +28,15 @@ namespace parkTrumpet.BusinessLogic
             }
         }
 
+        public string RetrieveClientCarList(int id)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                return JsonConvert.SerializeObject(
+                    db.Cars.Include("Client").Where(c => c.Client.Id == id).ToList());
+            }
+        }
+
         public int ReportCarArrival(string ParkingName,string PlateNumber)
         {
             carDbTable currentCar;
@@ -77,6 +86,13 @@ namespace parkTrumpet.BusinessLogic
                 return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").ToList());
             }
         }
+        public string RetrieveUserData(int id)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                return JsonConvert.SerializeObject(db.Clients.FirstOrDefault(c => c.Id == id));
+            }
+        }
         public string GetAdminAccountKey(string username,string password)
         {
             using (var db = new ParkingSystemContext())
@@ -86,6 +102,17 @@ namespace parkTrumpet.BusinessLogic
                     return cAccount.Id.ToString();
                 else
                     return "0";
+            }
+        }
+        public int GetUserAccountKey(string username, string password)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var cAccount = db.Clients.FirstOrDefault(a => a.Username == username && a.Password == password);
+                if (cAccount != null)
+                    return cAccount.Id;
+                else
+                    return 0;
             }
         }
     }
