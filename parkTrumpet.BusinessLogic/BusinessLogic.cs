@@ -36,7 +36,14 @@ namespace parkTrumpet.BusinessLogic
                     db.Cars.Include("Client").Where(c => c.Client.Id == id).ToList());
             }
         }
-
+        public string RetrieveCarData(int id)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                return JsonConvert.SerializeObject(
+                    db.Cars.FirstOrDefault(c=>c.Id==id));
+            }
+        }
         public int ReportCarArrival(string ParkingName,string PlateNumber)
         {
             carDbTable currentCar;
@@ -113,6 +120,18 @@ namespace parkTrumpet.BusinessLogic
                     return cAccount.Id;
                 else
                     return 0;
+            }
+        }
+
+        public int AddNewCar(string carJson,int clientId)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                carDbTable newCar = JsonConvert.DeserializeObject<carDbTable>(carJson);
+                newCar.Client.Id = clientId;
+                db.Cars.Add(newCar);
+                db.SaveChanges();
+                return 0;
             }
         }
     }

@@ -6,9 +6,9 @@ using parkTrumpet.Domain.Entities;
 
 namespace parkTrumpet.Web.Models
 {
-    public class GarageModel
+    public class EditCarModel
     {
-        public int UserId { get; set; }
-        public List<carDbTable> Cars {get;set;}
+        public int UserId { get; set; } 
+        public carDbTable Car { get; set; }
     }
 }

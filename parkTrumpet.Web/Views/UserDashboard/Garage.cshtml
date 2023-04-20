@@ -1,10 +1,10 @@
-﻿@model parkTrumpet.Web.Models.GarageModel
+﻿@using parkTrumpet.Web.Models
+@model parkTrumpet.Web.Models.GarageModel
 
 Garage<br />
-
       <table border="1" cellpadding="5">
           <tr>
-          @Ajax.ActionLink("Add New","AddCar",new AjaxOptions { HttpMethod="POST"})
+          @Ajax.ActionLink("Add", "ShowEditCar", "UserDashboard",new { userId=Model.UserId,carId=0}, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
           </tr>
           @foreach (var row in Model.Cars)
           {
@@ -14,6 +14,9 @@ Garage<br />
                   <td>@row.Brand</td>
                   <td>@row.ModelName</td>
                   <td style="background-color:@row.Color;">@row.Color</td>
+                  <td>
+                      @Ajax.ActionLink("Edit", "ShowEditCar", "UserDashboard", new { userId = Model.UserId, carId = row.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
+                  </td>
               </tr>
           }
       </table>

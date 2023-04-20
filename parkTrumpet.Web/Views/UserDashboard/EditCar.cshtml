@@ -1,0 +1,15 @@
+﻿@model parkTrumpet.Web.Models.EditCarModel
+<div>
+    @using (Ajax.BeginForm("SaveCar", new AjaxOptions { HttpMethod = "POST" }))
+    {
+    @Html.HiddenFor(m => m.UserId, Model.UserId)
+    @Html.TextBoxFor(m => m.Car.Brand,new { placeholder = "Brand"})
+    <br />
+    @Html.TextBoxFor(m => m.Car.ModelName, new { placeholder = "Model" })
+    <br />
+    @Html.TextBoxFor(m => m.Car.RegistrationPlate, new { placeholder = "RegistrationPlate" })
+    <br />
+    @Html.TextBoxFor(m => m.Car.Color, new { @class = "form-control", type = "color" })
+    <input type="submit" , value="Save" />
+    }
+</div>

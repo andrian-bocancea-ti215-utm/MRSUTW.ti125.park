@@ -20,17 +20,38 @@ namespace parkTrumpet.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult ShowGarage(UserDashboardModel userModel)
+        public ActionResult ShowGarage(int userId)
         {
             var bl = new BusinessLogic.BusinessLogic();
-            userModel = fillData(userModel);
             var model = new GarageModel
             {
-                Cars = JsonConvert.DeserializeObject<List<carDbTable>>(bl.RetrieveClientCarList(userModel.User.Id))
+                UserId = userId,
+                Cars = JsonConvert.DeserializeObject<List<carDbTable>>(bl.RetrieveClientCarList(userId))
             };
             return PartialView("Garage", model);
         }
-
+        [HttpPost]
+        public ActionResult ShowEditCar(int carId,int userId)
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            if (carId == 0)
+            {
+                var model = new EditCarModel();
+                return PartialView("EditCar",model);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ShowHistory(int userId)
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            var model = new GarageModel
+            {
+                UserId = userId,
+                Cars = JsonConvert.DeserializeObject<List<carDbTable>>(bl.RetrieveClientCarList(userId))
+            };
+            return PartialView("History");
+        }
         internal UserDashboardModel fillData(UserDashboardModel model)
         {
             if (Session["userKey"] == null) Session["userKey"] = 1;
