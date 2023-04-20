@@ -36,10 +36,35 @@ namespace parkTrumpet.Web.Controllers
             var bl = new BusinessLogic.BusinessLogic();
             if (carId == 0)
             {
-                var model = new EditCarModel();
+                var model = new EditCarModel()
+                {
+                    Car = new carDbTable(),
+                    UserId = userId
+                };
                 return PartialView("EditCar",model);
             }
+            else
+            {
+                var model = new EditCarModel
+                {
+                    Car = JsonConvert.DeserializeObject<carDbTable>(bl.RetrieveCarData(carId)),
+                    UserId = userId
+                };
+                return PartialView("EditCar", model);
+            }
             return View();
+        }
+        [HttpPost]
+        public ActionResult SaveCar(EditCarModel ecmodel)
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            bl.SaveCarData(JsonConvert.SerializeObject(ecmodel.Car),ecmodel.UserId);
+            var model = new GarageModel
+            {
+                UserId = ecmodel.UserId,
+                Cars = JsonConvert.DeserializeObject<List<carDbTable>>(bl.RetrieveClientCarList(ecmodel.UserId))
+            };
+            return PartialView("Garage", model);
         }
         [HttpPost]
         public ActionResult ShowHistory(int userId)

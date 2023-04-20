@@ -297,7 +297,6 @@
     <Content Include="Views\UserDashboard\Index.cshtml" />
     <Content Include="Views\UserDashboard\Garage.cshtml" />
     <Content Include="Views\UserDashboard\EditCar.cshtml" />
-    <Content Include="Views\UserDashboard\TestPart.cshtml" />
     <Content Include="Views\UserDashboard\History.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

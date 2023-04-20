@@ -4,16 +4,20 @@
     ViewBag.Title = "Index";
 }
 <h2>User: @Model.User.Username</h2>
-<div>
-    @Ajax.ActionLink("Garage", "ShowGarage", "UserDashboard", new { userId = Model.User.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-</div>
-<div>
-    @Ajax.ActionLink("History", "ShowHistory", "UserDashboard", new { userId = Model.User.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-</div>
-<div>
-    @Ajax.ActionLink("Checkout", "ShowCheckout", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-</div>
-<section id="main">
-</section>
-<section id="main2">
-</section>
+<nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+        <li>
+            @Ajax.ActionLink("Garage", "ShowGarage", "UserDashboard", new { userId = Model.User.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
+        </li>
+        <li>
+            @Ajax.ActionLink("History", "ShowHistory", "UserDashboard", new { userId = Model.User.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
+        </li>
+        <li>
+            @Ajax.ActionLink("Checkout", "ShowCheckout", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
+        </li>
+    </ul>
+    </nav>
+    <section id="main">
+    </section>
+    <section id="main2">
+    </section>

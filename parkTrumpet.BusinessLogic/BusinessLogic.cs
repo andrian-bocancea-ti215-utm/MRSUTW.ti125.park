@@ -44,6 +44,27 @@ namespace parkTrumpet.BusinessLogic
                     db.Cars.FirstOrDefault(c=>c.Id==id));
             }
         }
+        public int SaveCarData(string carJson, int userId)
+        {
+            var car = JsonConvert.DeserializeObject<carDbTable>(carJson);
+            using (var db = new ParkingSystemContext())
+            {
+                var x = db.Cars.FirstOrDefault(c => c.Id == car.Id);
+                if (x != null)
+                {
+                    x.Brand = car.Brand;
+                    x.Color = car.Color;
+                    x.ModelName = car.ModelName;
+                }
+                else
+                {
+                    car.Client = db.Clients.FirstOrDefault(c => c.Id == userId);
+                    db.Cars.Add(car);
+                }
+                db.SaveChanges();
+            }
+            return 0;
+        }
         public int ReportCarArrival(string ParkingName,string PlateNumber)
         {
             carDbTable currentCar;
