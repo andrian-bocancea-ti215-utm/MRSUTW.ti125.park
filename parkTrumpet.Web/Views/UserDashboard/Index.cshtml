@@ -4,19 +4,19 @@
     ViewBag.Title = "Index";
 }
 <h2>User: @Model.User.Username</h2>
-<nav class="navbar navbar-default">
-    <ul class="nav navbar-nav">
-        <li>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
             @Ajax.ActionLink("Garage", "ShowGarage", "UserDashboard", new { userId = Model.User.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-        </li>
-        <li>
+        </td>
+        <td>
             @Ajax.ActionLink("History", "ShowHistory", "UserDashboard", new { userId = Model.User.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-        </li>
-        <li>
+        </td>
+        <td>
             @Ajax.ActionLink("Checkout", "ShowCheckout", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-        </li>
-    </ul>
-    </nav>
+        </td>
+    </tr>
+</table>
     <section id="main">
     </section>
     <section id="main2">

@@ -1,0 +1,18 @@
+﻿@model parkTrumpet.Web.Models.UserRegistrationModel
+@{
+    ViewBag.Title = "Registration";
+}
+<h2>Registration</h2>
+@using (Html.BeginForm("Register", "UserLogin", FormMethod.Post))
+{
+    @Html.TextBoxFor(m => m.User.PhoneNumber, new { placeholder = "Phone Number" })
+    <br/>
+    @Html.TextBoxFor(m => m.User.Username, new { placeholder = "Username" })
+    <br />
+    @Html.PasswordFor(m=>m.User.Password, new { placeholder = "Password" })
+    <br />
+    <input type="submit" name="submit" value="Register" />
+}
+<div style="color:red">@Model.Message</div>
+
+

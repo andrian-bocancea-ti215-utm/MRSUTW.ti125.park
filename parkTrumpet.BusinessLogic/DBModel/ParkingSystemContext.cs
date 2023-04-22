@@ -14,12 +14,12 @@ namespace parkTrumpet.BusinessLogic.DBModel
         {
             Database.SetInitializer(new TestingParkInitializer());
         }
-        public virtual DbSet<adminAccountDbTable> AdminAccounts { get; set; }
         public virtual DbSet<carDbTable> Cars { get; set; }
         public virtual DbSet<clientDbTable> Clients { get; set; }
         public virtual DbSet<lotDbTable> Lots { get; set; }
         public virtual DbSet<ownerDbTable> Owners { get; set; }
         public virtual DbSet<parkingDbTable> Parkings { get; set; }
         public virtual DbSet<parkingSessionDbTable> ParkingSessions { get; set; }
+        public virtual DbSet<adminAccountDbTable> AdminAccounts { get; set; }
     }
 }

@@ -1,0 +1,13 @@
+﻿@model parkTrumpet.Web.Models.AdminDashboardModel
+<table border="1" cellpadding="5">
+    @foreach (var row in Model.ParkingList)
+    {
+        <tr>
+            <td>@row.Name</td>
+            <td>@row.NightPrice</td>
+            <td>@row.DayPrice</td>
+            <td>@row.FreeTime</td>
+            <td>@Html.ActionLink("Edit","ParkingEditor",new { parkingId = row.Id})</td>
+        </tr>
+    }
+</table>

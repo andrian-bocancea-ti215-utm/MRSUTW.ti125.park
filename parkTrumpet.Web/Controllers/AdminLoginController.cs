@@ -31,7 +31,7 @@ namespace parkTrumpet.Web.Controllers
             }
             else
             {
-                Session["userKey"] = key;
+                Session["adminKey"] = key;
                 return RedirectToAction("Index","AdminDashboard");
             }
         }

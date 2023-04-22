@@ -13,9 +13,7 @@
 
     <input type="submit" name="submit" value="Log in" />
 }
-@if (Model.Failed==true)
-     {
-     <h1>Incorrect Data</h1>
-     }
+@Html.ActionLink("Create Account","ShowRegistration")
+<div style="color:red">@Model.Message</div>
 
 

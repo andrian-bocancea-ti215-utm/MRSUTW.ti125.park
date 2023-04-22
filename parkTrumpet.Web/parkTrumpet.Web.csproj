@@ -246,12 +246,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminDashboardModel.cs" />
     <Compile Include="Models\EditCarModel.cs" />
     <Compile Include="Models\GarageModel.cs" />
     <Compile Include="Models\UserDashboardModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\ParkingConsoleModel.cs" />
+    <Compile Include="Models\UserRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +300,8 @@
     <Content Include="Views\UserDashboard\Garage.cshtml" />
     <Content Include="Views\UserDashboard\EditCar.cshtml" />
     <Content Include="Views\UserDashboard\History.cshtml" />
+    <Content Include="Views\UserLogin\Registration.cshtml" />
+    <Content Include="Views\AdminDashboard\ParkingList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -307,6 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UserRegistration\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\parkTrumpet.BusinessLogic\parkTrumpet.BusinessLogic.csproj">

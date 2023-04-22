@@ -1,7 +1,12 @@
-﻿
+﻿@model parkTrumpet.Web.Models.AdminDashboardModel
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+Dashboard
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+        </td>
+    </tr>
+</table>
+@Html.Partial("ParkingList",Model)

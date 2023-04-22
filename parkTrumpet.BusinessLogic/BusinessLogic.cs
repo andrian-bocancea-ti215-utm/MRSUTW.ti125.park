@@ -114,6 +114,21 @@ namespace parkTrumpet.BusinessLogic
                 return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").ToList());
             }
         }
+        public string RetrievePListFromAdKey(string adkey)
+        {
+            int adId = GetAdIdByKey(adkey);
+            if (adId != 0)
+            {
+                using (var db = new ParkingSystemContext())
+                {
+                    int owId = db.AdminAccounts.Include("Owner").FirstOrDefault(c => c.Id == adId).Owner.Id;
+                    var pList = db.Parkings.Include("Owner").Where(p => p.Owner.Id == owId).ToList();
+                    return JsonConvert.SerializeObject(pList);
+                }
+            }
+            else
+                return JsonConvert.SerializeObject(new List<parkingDbTable>());
+        }
         public string RetrieveUserData(int id)
         {
             using (var db = new ParkingSystemContext())
@@ -132,6 +147,19 @@ namespace parkTrumpet.BusinessLogic
                     return "0";
             }
         }
+        internal int GetAdIdByKey(string key)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                if(Int32.TryParse(key,out int id))
+                {
+                    var account = db.AdminAccounts.FirstOrDefault(a=>a.Id==id);
+                    if (account != null)
+                        return account.Id;
+                }
+                return 0;
+            }
+        }
         public int GetUserAccountKey(string username, string password)
         {
             using (var db = new ParkingSystemContext())
@@ -143,7 +171,17 @@ namespace parkTrumpet.BusinessLogic
                     return 0;
             }
         }
-
+        public int RegisterUser(string userJson)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var client = JsonConvert.DeserializeObject<clientDbTable>(userJson);
+                client.RegistrationDate = DateTime.UtcNow;
+                db.Clients.Add(client);
+                db.SaveChanges();
+            }
+            return 0;
+        }
         public int AddNewCar(string carJson,int clientId)
         {
             using (var db = new ParkingSystemContext())

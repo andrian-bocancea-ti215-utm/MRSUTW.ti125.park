@@ -21,5 +21,7 @@ namespace parkTrumpet.Domain.Entities
         public string Password { get; set; }
 
         public ownerDbTable Owner { get; set; }
+
+        public string Permissions { get; set; }
     }
 }

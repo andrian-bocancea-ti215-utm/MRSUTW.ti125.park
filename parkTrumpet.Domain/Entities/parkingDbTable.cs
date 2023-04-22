@@ -26,9 +26,9 @@ namespace parkTrumpet.Domain.Entities
 
         public int FreeTime { get; set; }
 
-        public int DayPrice { get; set; }
+        public float DayPrice { get; set; }
 
-        public int NightPrice { get; set; }
+        public float NightPrice { get; set; }
         
     }
 }
