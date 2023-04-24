@@ -155,6 +155,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\HomeStyle.css" />
+    <Content Include="Content\images\mapTekwillFront.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Slick\ajax-loader.gif" />
     <Content Include="Content\Slick\fonts\slick.svg" />
@@ -249,6 +250,7 @@
     <Compile Include="Models\AdminDashboardModel.cs" />
     <Compile Include="Models\EditCarModel.cs" />
     <Compile Include="Models\GarageModel.cs" />
+    <Compile Include="Models\ParkingEditorModel.cs" />
     <Compile Include="Models\UserDashboardModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
@@ -302,6 +304,7 @@
     <Content Include="Views\UserDashboard\History.cshtml" />
     <Content Include="Views\UserLogin\Registration.cshtml" />
     <Content Include="Views\AdminDashboard\ParkingList.cshtml" />
+    <Content Include="Views\AdminDashboard\ParkingEditor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

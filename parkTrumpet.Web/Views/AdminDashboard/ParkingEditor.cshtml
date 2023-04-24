@@ -1,0 +1,71 @@
+﻿@model parkTrumpet.Web.Models.ParkingEditorModel
+@{
+    ViewBag.Title = "ParkingEditor";
+}
+
+<h2>ParkingEditor</h2>
+<button id="normal" style="padding:2px">normal</button>
+<button id="handicap">handicap</button>
+<button id="electric">electric</button>
+<button id="remove">remove</button>
+<div id="selected">normal</div>
+<canvas id="cvs" style="background-image:url(/Content/images/mapTekwillFront.png)" height="200" width="200">
+</canvas>
+<script>
+    var pType = 1;
+    $("#normal").click(function () { window['pType'] = 1; $("#selected").html("normal"); });
+    $("#handicap").click(function () { window['pType'] = 2; $("#selected").html("handicap");});
+    $("#electric").click(function () { window['pType'] = 3; $("#selected").html("electric");});
+    $("#remove").click(function () { window['pType'] = 0; $("#selected").html("remove");});
+    const cvs = document.querySelector("#cvs");
+    const context = cvs.getContext('2d');
+    cvs.addEventListener('click', (e) => {
+        putP(e.offsetX, e.offsetY, pType);
+        $.ajax(
+            {
+                type: "POST", //HTTP POST Method
+                url: "AddLot", // Controller/View
+                data: { //Passing data
+                    pId: @Model.Lots[0].Parking.Id, //Reading text box values using Jquery
+                    x: e.offsetX,
+                    y: e.offsetY,
+                    t: pType
+                }
+
+            });
+    });
+    function putP(x, y, t) {
+        if (t == 0) {
+            $.ajax(
+            {
+                type: "POST", //HTTP POST Method
+                url: "RemoveLot", // Controller/View
+                data: { //Passing data
+                    pId: @Model.Lots[0].Parking.Id, //Reading text box values using Jquery
+                    x: x,
+                    y: y
+                }
+
+                });
+            location.reload();
+        }
+        else {
+            context.beginPath();
+            context.arc(x, y, 10, 0, 2 * Math.PI, false);
+            if (t == 1)
+                context.fillStyle = 'yellow';
+            if (t == 2)
+                context.fillStyle = 'blue';
+            if (t == 3)
+                context.fillStyle = 'green';
+            context.fill();
+        }
+    }
+</script>
+@foreach (var lot in Model.Lots)
+{
+    <script>putP(@lot.X, @lot.Y, @lot.Type);
+        context.fillStyle = 'black';
+        context.font = "20px Arial";
+        context.fillText("@lot.Number", @lot.X-5, @lot.Y-10);</script>
+}

@@ -29,6 +29,8 @@ namespace parkTrumpet.Domain.Entities
         public float DayPrice { get; set; }
 
         public float NightPrice { get; set; }
+
+        public string MapURL { get; set; }
         
     }
 }

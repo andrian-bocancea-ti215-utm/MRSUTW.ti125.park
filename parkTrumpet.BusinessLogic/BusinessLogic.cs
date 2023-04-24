@@ -1,14 +1,10 @@
-﻿using parkTrumpet.BusinessLogic.Interfaces;
+﻿using Newtonsoft.Json;
+using parkTrumpet.BusinessLogic.DBModel;
+using parkTrumpet.BusinessLogic.Interfaces;
+using parkTrumpet.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using parkTrumpet.Domain.Entities.Test;
-using parkTrumpet.Domain.Entities;
-using parkTrumpet.BusinessLogic.DBModel;
-using System.Text.Json;
-using Newtonsoft.Json;
 
 namespace parkTrumpet.BusinessLogic
 {
@@ -42,6 +38,14 @@ namespace parkTrumpet.BusinessLogic
             {
                 return JsonConvert.SerializeObject(
                     db.Cars.FirstOrDefault(c=>c.Id==id));
+            }
+        }
+        public string RetrieveParkingLotList(int pId)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                return JsonConvert.SerializeObject(
+                    db.Lots.Include("Parking").Where(l => l.Parking.Id == pId).ToList());
             }
         }
         public int SaveCarData(string carJson, int userId)
@@ -159,6 +163,35 @@ namespace parkTrumpet.BusinessLogic
                 }
                 return 0;
             }
+        }
+        public int AddPLot(int pId,int x,int y,int t)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var parking = db.Parkings.FirstOrDefault(p => p.Id == pId);
+                var lots = db.Lots.Include("Parking").Where(l => l.Parking.Id == pId);
+                var newLot = new lotDbTable() { IsActive = true, Number = 0, Parking = parking, Type = t, X = x, Y = y };
+                db.Lots.Add(newLot);
+                db.SaveChanges();
+                int n = 1;
+                lots = db.Lots.Include("Parking").Where(l => l.Parking.Id == pId);
+                foreach (var lot in lots)
+                {
+                    lot.Number = n;
+                    n++;
+                }
+                db.SaveChanges();
+            }
+            return 0;
+        }
+        public int RemovePLot(int pId,int lNumber)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                db.Lots.Remove(db.Lots.Include("Parking").FirstOrDefault(l => l.Parking.Id == pId && l.Number==lNumber )) ;
+                db.SaveChanges();
+            }
+            return 0;
         }
         public int GetUserAccountKey(string username, string password)
         {
