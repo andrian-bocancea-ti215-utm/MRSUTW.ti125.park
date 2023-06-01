@@ -118,6 +118,14 @@ namespace parkTrumpet.BusinessLogic
                 return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").ToList());
             }
         }
+        public string RetrievePSListByUserId(int id)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+
+                return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").Include("Car.").ToList());
+            }
+        }
         public string RetrievePListFromAdKey(string adkey)
         {
             int adId = GetAdIdByKey(adkey);
