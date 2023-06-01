@@ -77,11 +77,21 @@ namespace parkTrumpet.Web.Controllers
             };
             return PartialView("History");
         }
+        public ActionResult Payment (int sessionId)
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            bl.CompleteSessionPayment(sessionId);
+            return new EmptyResult();
+        }
         internal UserDashboardModel fillData(UserDashboardModel model)
         {
             if (Session["userKey"] == null) Session["userKey"] = 1;
             var bl = new BusinessLogic.BusinessLogic();
             model.User = JsonConvert.DeserializeObject<clientDbTable>(bl.RetrieveUserData((int)Session["userKey"]));
+            model.ActiveSessions = JsonConvert.DeserializeObject<List<parkingSessionDbTable>>
+                (bl.RetrieveUserActiveSessionsList((int)Session["userKey"]));
+            model.UnpaidSessions = JsonConvert.DeserializeObject<List<parkingSessionDbTable>>
+                (bl.RetrieveUserUnpaidSessionsList((int)Session["userKey"]));
             return model;
         }
     }

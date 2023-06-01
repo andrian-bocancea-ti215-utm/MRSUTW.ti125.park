@@ -118,14 +118,6 @@ namespace parkTrumpet.BusinessLogic
                 return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").ToList());
             }
         }
-        public string RetrievePSListByUserId(int id)
-        {
-            using (var db = new ParkingSystemContext())
-            {
-
-                return JsonConvert.SerializeObject(db.ParkingSessions.Include("Car").Include("Parking").Include("Car.").ToList());
-            }
-        }
         public string RetrievePListFromAdKey(string adkey)
         {
             int adId = GetAdIdByKey(adkey);
@@ -232,6 +224,32 @@ namespace parkTrumpet.BusinessLogic
                 db.Cars.Add(newCar);
                 db.SaveChanges();
                 return 0;
+            }
+        }
+        public string RetrieveUserUnpaidSessionsList(int uId)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var l = db.ParkingSessions.Include("Parking").Include("Car").Include("Car.Client")
+                    .Where(S => S.Car.Client.Id == uId && S.DepartureTime !=null&&S.IsPaid==false).ToList();
+                return JsonConvert.SerializeObject(l);
+            }
+        }
+        public string RetrieveUserActiveSessionsList(int uId)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var l = db.ParkingSessions.Include("Parking").Include("Car").Include("Car.Client")
+                    .Where(S => S.Car.Client.Id == uId && S.DepartureTime == null).ToList();
+                return JsonConvert.SerializeObject(l);
+            }
+        }
+        public void CompleteSessionPayment(int sId)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                db.ParkingSessions.FirstOrDefault(s => s.Id == sId).IsPaid = true;
+                db.SaveChanges();
             }
         }
     }

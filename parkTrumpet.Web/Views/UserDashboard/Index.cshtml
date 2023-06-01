@@ -4,6 +4,34 @@
     ViewBag.Title = "Index";
 }
 <h2>User: @Model.User.Username</h2>
+
+<table border="1" cellpadding="5">
+    @foreach (var row in Model.ActiveSessions)
+    {
+        <tr>
+            <td>ACTIVE</td>
+            <td>@row.Parking.Name</td>
+            <td>@row.Car.RegistrationPlate</td>
+            <td>@row.ArrivalTime</td>
+            <td>@row.DepartureTime</td>
+        </tr>
+    }
+</table>
+
+<table border="1" cellpadding="5">
+    @foreach (var row in Model.UnpaidSessions)
+    {
+        <tr>
+            <td>UNPAID</td>
+            <td>@row.Parking.Name</td>
+            <td>@row.Car.RegistrationPlate</td>
+            <td>@row.ArrivalTime</td>
+            <td>@row.DepartureTime</td>
+            <td>@Ajax.ActionLink("Pay","Payment","UserDashboard",new { sessionId = row.Id}, new AjaxOptions { HttpMethod = "POST" })</td>
+        </tr>
+    }
+</table>
+
 <table border="1" cellpadding="5">
     <tr>
         <td>

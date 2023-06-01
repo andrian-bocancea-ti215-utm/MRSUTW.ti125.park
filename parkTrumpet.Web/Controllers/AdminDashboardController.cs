@@ -18,7 +18,7 @@ namespace parkTrumpet.Web.Controllers
             var bl = new BusinessLogic.BusinessLogic();
             var model = new AdminDashboardModel()
             {
-                ParkingList = JsonConvert.DeserializeObject<List<parkingDbTable>>(bl.RetrievePListFromAdKey((string)Session["adminKey"]))
+                ParkingList = JsonConvert.DeserializeObject<List<parkingDbTable>>(bl.RetrievePListFromAdKey((string)Session["adminKey"])),
             };
             return View(model);
         }
