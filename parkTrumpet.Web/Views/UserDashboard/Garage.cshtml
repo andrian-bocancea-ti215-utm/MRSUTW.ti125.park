@@ -3,9 +3,9 @@
 
 Garage<br />
       <table border="1" cellpadding="5">
-          <tr>
+          <tr><td>
           @Ajax.ActionLink("Add", "ShowEditCar", "UserDashboard",new { userId=Model.UserId,carId=0}, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main", InsertionMode = InsertionMode.Replace })
-          </tr>
+          </td></tr>
           @foreach (var row in Model.Cars)
           {
               <tr>

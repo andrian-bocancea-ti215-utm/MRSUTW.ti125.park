@@ -244,6 +244,15 @@ namespace parkTrumpet.BusinessLogic
                 return JsonConvert.SerializeObject(l);
             }
         }
+        public string RetrieveUserCompletedSessionsList(int uId)
+        {
+            using (var db = new ParkingSystemContext())
+            {
+                var l = db.ParkingSessions.Include("Parking").Include("Car").Include("Car.Client")
+                    .Where(S => S.Car.Client.Id == uId && S.IsPaid==true).ToList();
+                return JsonConvert.SerializeObject(l);
+            }
+        }
         public void CompleteSessionPayment(int sId)
         {
             using (var db = new ParkingSystemContext())

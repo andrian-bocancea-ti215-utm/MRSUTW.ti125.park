@@ -70,12 +70,12 @@ namespace parkTrumpet.Web.Controllers
         public ActionResult ShowHistory(int userId)
         {
             var bl = new BusinessLogic.BusinessLogic();
-            var model = new GarageModel
+            var model = new HistoryModel
             {
-                UserId = userId,
-                Cars = JsonConvert.DeserializeObject<List<carDbTable>>(bl.RetrieveClientCarList(userId))
+                CompletedSessions = JsonConvert.DeserializeObject<List<parkingSessionDbTable>>
+                (bl.RetrieveUserCompletedSessionsList((int)Session["userKey"]))
             };
-            return PartialView("History");
+            return PartialView("History",model);
         }
         public ActionResult Payment (int sessionId)
         {
